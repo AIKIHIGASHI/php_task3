@@ -32,7 +32,7 @@ $posts = getPosts($pdo);
   
   <?php foreach($posts as $post): ?>
     <ul>
-      <li>id : <?= h($post->id) ?></li>
+      <li>No : <?= h($post->id) ?></li>
       <li>名前 : <?= h($post->name) ?></li>
       <li>投稿内容 : <?= h($post->text) ?></li>
     </ul>
