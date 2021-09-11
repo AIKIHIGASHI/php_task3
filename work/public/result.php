@@ -14,7 +14,7 @@ $message = $_SESSION['message']
   <title>掲示板 - 投稿完了</title>
 </head>
 <body>
-  <h1><?= $message ?></h1>
+  <h1><?= h($message) ?></h1>
   <button onclick="location.href='index.php'">投稿一覧に戻る</button>
 </body>
 </html>
