@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../app/config.php');
 
 $pdo = getPdoInstance();
 $action = filter_input(INPUT_GET, 'action');
-
+$_SESSION['message'] = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   switch ($action) {
     case 'add':
