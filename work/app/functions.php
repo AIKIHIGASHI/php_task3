@@ -45,8 +45,6 @@ function deletePost($pdo) {
 }
 
 function getPosts($pdo) {
-  $pdo->query("SET @i := 0");
-  $pdo->query("UPDATE posts SET id = (@i := @i +1)");
   $stmt = $pdo->query("SELECT * FROM posts ORDER BY id ASC");
   $posts = $stmt->fetchALL();
   return $posts;

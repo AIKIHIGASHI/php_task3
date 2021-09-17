@@ -41,9 +41,9 @@ $posts = getPosts($pdo);
   </form>
   <h2>投稿内容一覧</h2>
   
-  <?php foreach($posts as $post): ?>
+  <?php foreach($posts as $index => $post): ?>
     <ul>
-        <li>No : <?= h($post->id) ?></li>
+        <li>No : <?= h($index + 1) ?></li>
         <li>名前 : <?= h($post->name) ?></li>
         <li>投稿内容 : <?= h($post->text) ?></li>
         <li>
