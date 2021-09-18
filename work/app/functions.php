@@ -31,6 +31,16 @@ function addPost($pdo) {
   $stmt->bindValue('name', $name, PDO::PARAM_STR);
   $stmt->bindValue('text', $text, PDO::PARAM_STR);
   $stmt->execute();
+  $_SESSION['message'] = '投稿が完了しました。';
+  header('Location: ' . SITE_URL . '/result.php');
+}
+
+function deletePost($pdo) {
+  $id = filter_input(INPUT_POST, 'del_id');
+  $stmt = $pdo->query("DELETE FROM posts WHERE id = $id");
+  $stmt->bindValue('id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $_SESSION['message'] = '投稿の削除が完了しました。';
   header('Location: ' . SITE_URL . '/result.php');
 }
 
@@ -39,4 +49,5 @@ function getPosts($pdo) {
   $posts = $stmt->fetchALL();
   return $posts;
 }
+
 
