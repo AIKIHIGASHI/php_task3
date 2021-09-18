@@ -44,6 +44,25 @@ function deletePost($pdo) {
   header('Location: ' . SITE_URL . '/result.php');
 }
 
+function editPost($pdo) {
+  $id = filter_input(INPUT_POST, 'edit_id');
+  $stmt = $pdo->query("SELECT * FROM posts WHERE id = $id");
+  $post = $stmt->fetch();
+  return $post;
+}
+
+function updatePost($pdo) {
+  $id = filter_input(INPUT_POST, 'up_id');
+  $name = trim(filter_input(INPUT_POST, 'name'));
+  $text = trim(filter_input(INPUT_POST, 'text'));
+  $stmt = $pdo->query("UPDATE posts SET name=$name, text=$text WHERE id = $id");
+  $stmt->bindValue('name', $name, PDO::PARAM_STR);
+  $stmt->bindValue('text', $text, PDO::PARAM_STR);
+  $stmt->execute();
+  $_SESSION['message'] = '編集が完了しました。';
+  header('Location: ' . SITE_URL . '/result.php');
+}
+
 function getPosts($pdo) {
   $stmt = $pdo->query("SELECT * FROM posts ORDER BY id ASC");
   $posts = $stmt->fetchALL();
